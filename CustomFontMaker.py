@@ -23,6 +23,7 @@ class FontPainter:
 
     def clear(self):
         print("clear")
+        self.canvas.delete("all")
 
 
 root = tk.Tk()
