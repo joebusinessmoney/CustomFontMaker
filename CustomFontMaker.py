@@ -1,7 +1,8 @@
 import tkinter as tk
-import PIL
 from PIL import Image, ImageDraw
 from tkinter import filedialog
+import canvasvg
+from canvasvg import convert, saveall, SVGdocument
 
 class FontPainter:
     brushSize = 7
@@ -66,8 +67,12 @@ class FontPainter:
 
     # save function
 
+    print(SVGdocument)
+
     def save(self):
-        filePath = filedialog.asksaveasfilename(defaultextension=".png")
+     #   convert(SVGdocument, self.canvas)
+     #   saveall("font", self.canvas, items=None, margin=10, tounicode=None)
+        filePath = filedialog.asksaveasfilename(defaultextension=".svg")  
         if filePath:
             self.image.save(filePath)
     
