@@ -1,19 +1,30 @@
-from tkinter import *
-import os
-import pickle
+import tkinter as tk
 
-# window settings
+class FontPainter:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Drawing App")
 
-root = Tk()
+        self.canvas = tk.Canvas(root, bg="white", width=500, height=500)
+        self.canvas.pack()
 
-root.title("Custom Font Maker")
-root.geometry("500x500")
-root.resizable(False, False)
+        self.button = tk.Button(root, text="Save")
+        self.button.pack()
 
-# canvas frame
+        self.button = tk.Button(root, text="Clear", command=self.clear)
+        self.button.pack()
 
-frame1 = Frame(root, height=500, width=500)
+        self.canvas.bind("<B1-Motion>", self.paint)
 
-# canvas = Canvas(frame1, height=450, width=450, bg="white")
+    def paint(self, event):
+        x1, y1 = (event.x - 1), (event.y - 1)
+        x2, y2 = (event.x + 1), (event.y + 1)
+        self.canvas.create_oval(x1, y1, x2, y2, fill="black", width=2)
 
+    def clear(self):
+        print("clear")
+
+
+root = tk.Tk()
+app = FontPainter(root)
 root.mainloop()
